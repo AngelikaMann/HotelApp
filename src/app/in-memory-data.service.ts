@@ -48,7 +48,7 @@ createDb()
     endDate : new Date("2023-08-08")
   }
 ]
-return bookings;
+return {bookings};
 }
 
   constructor() { }
