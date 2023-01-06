@@ -15,13 +15,15 @@ bookingsUrl : string = "/api/bookings";
   getBookings(): Observable<Booking[]> {
 
     var response = this.httpClient.get<Booking[]>(this.bookingsUrl);
-    console.log(response);
+   
     return response;
   }
 
-  deleteBooking(booking: Booking): void {
-    var index = Bookings.indexOf(booking);
-    Bookings.splice(index, 1);
+  deleteBooking(booking: Booking): Observable<Booking>  {
+    var response = this.httpClient.delete<Booking>(this.bookingsUrl + "/" + booking.id);
+    console.log(response);
+
+   return response;
   }
   getBookingById(id: Number): Booking {
     var bookingById = Bookings.find((booking) => booking.id == id)!;

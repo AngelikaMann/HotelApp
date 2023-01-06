@@ -16,10 +16,11 @@ export class BookingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingService.getBookings().subscribe((result) => {
-      this.bookings=result;
+      this.bookings = result;
     });
   }
   deleteBooking(booking: Booking): void {
-    this.bookingService.deleteBooking(booking);
+    this.bookingService.deleteBooking(booking).subscribe();
+    this.bookings = this.bookings.filter((b) => b != booking);
   }
 }
