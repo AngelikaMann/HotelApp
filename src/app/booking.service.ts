@@ -15,27 +15,22 @@ bookingsUrl : string = "/api/bookings";
   getBookings(): Observable<Booking[]> {
 
     var response = this.httpClient.get<Booking[]>(this.bookingsUrl);
-   
+
     return response;
   }
 
   deleteBooking(booking: Booking): Observable<Booking>  {
-    var response = this.httpClient.delete<Booking>(this.bookingsUrl + "/" + booking.id);
-    console.log(response);
-
-   return response;
+  var response = this.httpClient.delete<Booking>(this.bookingsUrl + "/" + booking.id);
+    return response;
   }
-  getBookingById(id: Number): Booking {
-    var bookingById = Bookings.find((booking) => booking.id == id)!;
-    return bookingById;
+  getBookingById(id: number): Observable<Booking> {
+    var response = this.httpClient.get<Booking>(this.bookingsUrl + "/" + id);
+    return  response;
   }
 
-  addBooking(booking: Booking): void {
-    Bookings.push(booking);
-  }
-  updateBooking(booking :Booking) :void {
-    var currentBooking= this.getBookingById(booking.id);
-    currentBooking=booking;
-  }
+  addBooking(booking: Booking):Observable<Booking> {
 
+    var response = this.httpClient.post<Booking>(this.bookingsUrl,booking);
+    return  response;
+  }
 }
