@@ -28,7 +28,7 @@ export class CreateBookingComponent implements OnInit {
   bookingForm :FormGroup= this.formbuilder.group({
     id: ['', Validators.required],
     roomNumber: ['', Validators.required],
-    name: ['', Validators.required],
+    name: ['', Validators.compose([Validators.required,Validators.minLength(5)])],
     startDate: ['', Validators.required],
     endDate: ['', Validators.required]
 
